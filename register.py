@@ -4,7 +4,7 @@ import os
 
 parser = argparse.ArgumentParser("register")
 
-comment = parser.add_argument("--userid", type=str)
+comment = parser.add_argument("--userid", type=int)
 
 args = parser.parse_args()
 
