@@ -15,6 +15,11 @@ jobs:
         env:
           VERIFI: ${{ secrets.VERIFI }} 
         run: |
+          SUBSTR=$(echo ${{github.event.comment.body}} | cut -d' ' -f 2)
           python -m pip install --upgrade pip
           pip install requests
-          python -m register --comment ${{ github.event.comment.body }}
+          python -m register --comment $SUBSTR
+      - name: Close Issue
+        uses: peter-evans/close-issue@v1.0.3
+        with:
+          comment: "Congratulations. \nApproved! Please request through user ID.\nHere is an example:\n```py\nrequests.get('example.com', headers={'Authorization': user_id})"
