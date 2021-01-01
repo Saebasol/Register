@@ -18,7 +18,7 @@ jobs:
           SUBSTR=$(echo ${{github.event.comment.body}} | cut -d' ' -f 2)
           python -m pip install --upgrade pip
           pip install requests
-          python -m register --comment $SUBSTR
+          python -m register --userid $SUBSTR
       - name: Close Issue
         uses: peter-evans/close-issue@v1.0.3
         with:
