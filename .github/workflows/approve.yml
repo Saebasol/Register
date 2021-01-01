@@ -1,0 +1,20 @@
+name: Reguster Heliotrope
+on: issue_comment
+
+
+jobs:
+  issue-commented:
+    if: ${{ !github.event.issue.pull_request && contains(github.event.comment.body, '/approve') && !contains(github.event.comment.author_association, 'NONE') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Approve register
+        env:
+          VERIFI: ${{ secrets.VERIFI }} 
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+          python -m register --comment ${{ github.event.comment.body }}
