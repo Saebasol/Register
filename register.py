@@ -37,14 +37,14 @@ async def send_api_key():
                     return
 
     client = discord.Client()
-    await client.start(os.environ["BOT_TOKEN"])
+    await client.login(os.environ["BOT_TOKEN"])
     user = await client.fetch_user(int(user_id))
     try:
         await user.send(
-            f"Congratulations. \nApproved! Please request through key: ``{api_key}``.\nHere is an example:\n```py\nrequests.get('example.com', headers={'Authorization': {api_key}})"
+            f"Congratulations. \nApproved! Please request through key: ``{api_key}``\nMore information can be found in the documentation.: https://github.com/Saebasol/Heliotrope/wiki"
         )
     except Exception as e:
-        print(f"Can't send Message Because:{e}")
+        print(f"Can't send Message Because: {e}")
     else:
         print("Success send message")
 
