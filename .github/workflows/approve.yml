@@ -13,13 +13,14 @@ jobs:
           python-version: 3.9
       - name: Approve register
         env:
-          VERIFI: ${{ secrets.VERIFI }} 
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          SIGN_KEY: ${{ secrets.SIGN_KEY }}
         run: |
           SUBSTR=$(echo ${{github.event.comment.body}} | cut -d' ' -f 2)
           python -m pip install --upgrade pip
-          pip install requests
+          pip install requests pynacl
           python -m register --userid $SUBSTR
       - name: Close Issue
         uses: peter-evans/close-issue@v1.0.3
         with:
-          comment: "Congratulations. \nApproved! Please request through user ID.\nHere is an example:\n```py\nrequests.get('example.com', headers={'Authorization': user_id})"
+          comment: "Congratulations. Approved!"
