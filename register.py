@@ -24,7 +24,7 @@ async def send_api_key():
     async with aiohttp.ClientSession() as cs:
         async with cs.post(
             "https://doujinshiman.ga/v3/api/register",
-            json={"user_id": user_id, "api_key": api_key},
+            json={"user_id": user_id, "api_key": api_key.decode()},
             headers={"Verification": os.environ["VERIFI"]},
         ) as r:
             res = await r.json()
