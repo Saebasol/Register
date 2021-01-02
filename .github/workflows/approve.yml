@@ -18,7 +18,7 @@ jobs:
         run: |
           SUBSTR=$(echo ${{github.event.comment.body}} | cut -d' ' -f 2)
           python -m pip install --upgrade pip
-          pip install requests pynacl
+          pip install pynacl discord
           python -m register --userid $SUBSTR
       - name: Close Issue
         uses: peter-evans/close-issue@v1.0.3
