@@ -17,7 +17,7 @@ user_id: str = args.userid
 
 key = SigningKey(b64decode(os.environ["SIGN_KEY"]))
 
-api_key = key.sign(f"{user_id}{round(time.time())}".encode(), encoder=Base64Encoder)
+api_key = key.sign(f"{user_id}{round(time.time())}".encode(), encoder=Base64Encoder).decode()
 
 
 async def send_api_key():
