@@ -40,7 +40,7 @@ async def send_api_key():
     await client.start(os.environ["BOT_TOKEN"])
     user = await client.fetch_user(int(user_id))
     try:
-        user.send(
+        await user.send(
             f"Congratulations. \nApproved! Please request through key: ``{api_key}``.\nHere is an example:\n```py\nrequests.get('example.com', headers={'Authorization': {api_key}})"
         )
     except Exception as e:
