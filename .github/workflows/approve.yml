@@ -15,6 +15,7 @@ jobs:
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           SIGN_KEY: ${{ secrets.SIGN_KEY }}
+          VERIFI: ${{ secrets.VERIFI }}
         run: |
           SUBSTR=$(echo ${{github.event.comment.body}} | cut -d' ' -f 2)
           python -m pip install --upgrade pip
